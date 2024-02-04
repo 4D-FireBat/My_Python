@@ -14,4 +14,17 @@ def is_palindrome(teststr):
         return True
     return False
 
+run = True
+while (run):
+    teststr = input("Enter a string to test for palindrome, or type 'Exit': ")
+
+    # Check to see if the input is Exit or blank and if so exit the program
+    if teststr == "":
+        run = False
+        break
+    elif teststr.lower() == "exit":
+        run = False
+        break
+
+    print("Palindrome test:", is_palindrome(teststr))
 

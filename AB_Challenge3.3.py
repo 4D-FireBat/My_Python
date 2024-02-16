@@ -13,8 +13,8 @@ def you_guess():
 
     # Set the initial variables
     the_number = random.randint(1, 100)
-    #guess = input("Take a guess: ")
-    print(the_number)
+    # guess = input("Take a guess: ")
+    # print(the_number)
     tries = 10
     exited = 0
     ending = ""

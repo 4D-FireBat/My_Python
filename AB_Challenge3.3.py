@@ -13,45 +13,41 @@ def you_guess():
 
     # Set the initial variables
     the_number = random.randint(1, 100)
-    # guess = input("Take a guess: ")
-    # print(the_number)
+    guess = input("Take a guess: ")
+    print(the_number)
     tries = 10
-    exited = 0
-    ending = ""
-
-    # Guessing loop
-    looping = True
-    while looping:
-        guess = input("Take a guess: ")
-        if tries == 1:
-            exited = 1
-            looping = False
-        if guess == "":
-            exited = 1
-            looping = False
-        else: 
-            guessint = int(guess)
-        if guessint > the_number:
-            print("Lower...")
-            tries -= 1
-            print("You have " + str(tries) + " tries left")
-        elif guessint < the_number:
-            print("Higher...")
-            tries -= 1
-            print("You have " + str(tries) + " tries left")
-        else:
-            exited = 0
-            guess = the_number
-            looping = False
-        
-    if guess == the_number and exited == 0:
-        ending = print("You guessed it! The number was", the_number)
-    elif tries == 1 and exited == 1:
-        ending = print("You absolute fool! How could you not know I was thinking of the number " +  str(the_number) + "?")
-    elif exited == 1:
-        ending = print("Thanks for playing!")
-
-    return ending
+    # exited = 0
+    # ending = ""
+    if guess != the_number:
+        while guess != the_number:
+            if guess == "" or guess.lower == "exit":
+                result = print("Thanks for playing!")
+            else:
+                try:
+                    if tries == 0:
+                        result = print("You fool! How could you possibly NOT know that the number was ", the_number)
+                        break
+                    else:
+                        tries -= 1
+                        guessint = int(guess)
+                        if guessint > the_number:
+                            print("Lower...")
+                            #tries -= 1
+                        elif guessint < the_number:
+                            print("Higher...")
+                            #tries -= 1
+                        elif guessint == the_number:
+                            result = print("That's it! I was thinking of the number ", the_number)
+                            break
+                        guess = input("Guess again: ")
+                    print("You have " + str(tries) + " tries remaining.")
+                except ValueError as e:
+                    print("Please enter a valid number")
+                    print(e)
+        return result
+    else:
+        result = print("That's it! I was thinking of the number ", the_number)
+        return result
 
 if __name__ == "__main__":
     you_guess()

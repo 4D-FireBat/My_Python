@@ -12,6 +12,8 @@ def word_jumble():
     word = random.choice(WORDS)
     correct = word
     jumble = ""
+    # Scoring system: Guess the word on the first try = 5 points. Guess after the first try, without a hint = 3 points. Using the hint results in only 1 point.
+    score = 5
 
     while word:
         # While there are still letters in the word, use slicing to remove the letters at random and add them to the jumble variable
@@ -35,11 +37,21 @@ def word_jumble():
         if guess == "?":
             print("The first letter of this word is", correct[0])
             guess = input("Your guess: ")
+            score = 1
+        elif score == 1:
+            print("That's incorrect. Guess again.")
+            guess = input("Your guess: ")
+        else:
+            score = 3
+            print("That's incorrect. Guess again.")
+            guess = input("Your guess: ")
         
     if guess == correct:
-        print("That's it! You guessed it\n")
+        print("That's it! You guessed it! You receive " + str(score) + " points!\n")
         print("Thanks for playing!")
         input("\n\nPress the Enter key to exit")
+
+    
 
 
 if __name__ == "__main__":

@@ -22,10 +22,19 @@ def daddy():
         option = input("\nWhat would you like to do? ")
         
         if option == "1":
+            # Check to see if there is a father/son record based on the user's entry.
             son = input("\nWho's father are you looking for? ")
             soncap = son.title()
             if soncap in fathers:
-                print("I have the father of ", soncap, " listed as: ", fathers.get(soncap))
+                print("I have the father of ", soncap, " listed as:", fathers.get(soncap))
+                print("Is this informaiton correct?")
+                update = input("Yes or No? ")
+                if update.title() == "No":
+                    dad = input("Who is the true father of " + str(soncap) + " ? ")
+                    newfather = dad.title()
+                    fathers[soncap] = newfather
+                    print(fathers.get(soncap))
+            # If the record doesn't exist give the option to add it.
             else:
                 print("I don't have a father listed for ", soncap)
                 print("\nWould you like to add them?")
@@ -41,16 +50,18 @@ def daddy():
         if option == "2":
             son = input("\nWho is the son that you would like to add? ")
             newson = son.title()
+            # Check to see if the son already has a father listed in the dictionary and if so give them the option to update the record.
             if newson in fathers:
-                print("I currently have ", newson, "'s father listed as", fathers.get(newson))
+                print("I currently have", newson, "'s father listed as", fathers.get(newson))
                 print("Would you like to change this record?")
-                update = input("Yes or No?")
+                update = input("Yes or No? ")
                 if update.title() == "Yes":
                     truefather = input("Who is the true father of " + str(newson) + "? ")
                     newfather = truefather.title()
-                    fathers.update(newson = newfather)
-                    print("I have updated my records to show that ", fathers.get(newson), " is the father of ", newson, ".")
+                    fathers[newson] = newfather
+                    print("I have updated my records to show that", fathers.get(newson), "is the father of", newson, ".")
                     input("\nPress the Enter key to continue.")
+            # If there isn't a current record, get the info to add the combo.
             else:
                 dad = input("And who would you like to enter as the father of " + newson + " ? ")
                 newfather = dad.title()
@@ -60,7 +71,7 @@ def daddy():
 
 
         if option == "3":
-            input("Thanks for Playing!")
+            input("Thanks for Playing! Press the Enter key to exit.")
             run = False
 
 
